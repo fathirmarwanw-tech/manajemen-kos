@@ -20,9 +20,3 @@ Aplikasi Web Manajemen Kost-Kostan adalah sistem operasional digital yang diranc
 - **Representasi Data:** Menggunakan format *hexadecimal* atau *Base64* untuk penyimpanan data biner hasil enkripsi ke dalam database.
 - **Sumber Keacakan:** Menggunakan *Cryptographically Secure Pseudo-Random Number Generator* (CSPRNG) bawaan sistem/pustaka untuk menghasilkan *nonce* dan *salt* yang unik di setiap proses enkripsi.
 - **Alasan Pemilihan Pustaka:** Menggunakan pustaka standar yang terpelihara dengan baik (`cryptography` dan `bcrypt` di Python) serta menghindari penggunaan sandi klasik yang sudah tidak aman.
-
-## Cara Menjalankan
-1. Clone repository ini ke komputer lokal.
-2. Install dependensi yang dibutuhkan:
-   ```bash
-   pip install -r requirements.txt
