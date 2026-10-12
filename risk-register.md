@@ -1,0 +1,9 @@
+# Register Risiko (Risk Register) & Rencana Kontrol
+
+| No | Ancaman Terkait | Likelihood | Impact | Alasan Berdasarkan Kondisi Produk | Rencana Kontrol / Mitigasi | Pemetaan Tugas |
+|----|-----------------|------------|--------|----------------------------------|---------------------------|----------------|
+| 1 | **Ancaman #4** (Kebocoran NIK Penyewa) | Tinggi | Tinggi | Tabel `tenants` menyimpan identitas asli privat; jika bocor tanpa enkripsi, dampaknya fatal bagi privasi penyewa. | Mengimplementasikan enkripsi simetris **AES-256-GCM** dengan *nonce* acak pada modul penyimpanan data penyewa. | Tugas 1 (Kripto) & Tugas 2 |
+| 2 | **Ancaman #1** (Pencurian Sesi Admin) | Sedang | Tinggi | Panel admin memegang kontrol penuh atas data kos; pembajakan sesi memberi akses tak terbatas ke sistem. | Menerapkan token sesi aman dengan CSPRNG, masa aktif token terbatas, dan HTTPS secure cookies. | Tugas 2 / Tugas 3 |
+| 3 | **Ancaman #2** (Manipulasi Data Pembayaran)| Rendah | Tinggi | Integritas transaksi keuangan sangat vital bagi operasional kos; manipulasi merugikan secara finansial. | Validasi input ketat di backend, *prepared statements* untuk cegah SQL Injection, dan pencatatan audit log. | Tugas 2 / Tugas 3 |
+| 4 | **Ancaman #6** (Peningkatan Hak Akses / IDOR)| Sedang | Sedang | Struktur endpoint API yang kurang ketat memungkinkan pengguna menebak ID akses penghuni lain. | Menerapkan mekanisme *Role-Based Access Control* (RBAC) dan verifikasi kepemilikan sesi pada setiap request. | Tugas 2 / Tugas 3 |
+| 5 | **Ancaman #7** (Phishing / Kredensial Lemah)| Tinggi | Sedang | Pengguna sering memakai password mudah ditebak; pencurian kredensial berujung pada pengambilalihan akun. | Menerapkan fungsi *hashing* password menggunakan **bcrypt** dengan *salt* otomatis serta aturan kompleksitas password. | Tugas 1 (Kripto) & Tugas 2 |

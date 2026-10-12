@@ -1,40 +1,33 @@
 import pytest
 from crypto_component import KostCryptoManager
 
-def test_encryption_decryption_success():
-    """Uji Positif 1: Memastikan enkripsi dan dekripsi data penyewa berhasil."""
+def test_aes_gcm_encryption_decryption():
+    """Uji Positif: Memastikan enkripsi dan dekripsi data penyewa berjalan sukses"""
     manager = KostCryptoManager()
-    data = "Penyewa: Budi - Kamar 101 - NIK: 3171123456789000"
+    sensitive_data = "NIK_3201123456780001_08123456789"
     
-    encrypted = manager.encrypt_tenant_data(data)
-    decrypted = manager.decrypt_tenant_data(encrypted["nonce"], encrypted["ciphertext"])
+    encrypted = manager.encrypt_tenant_data(sensitive_data)
+    decrypted = manager.decrypt_tenant_data(encrypted)
     
-    assert decrypted == data
+    assert decrypted == sensitive_data
 
-def test_password_hashing_success():
-    """Uji Positif 2: Memastikan hashing password admin valid."""
-    manager = KostCryptoManager()
-    pwd = "KostRahasia123!"
-    hashed = pwd_hash = manager.hash_admin_password(pwd)
+def test_bcrypt_password_hashing():
+    """Uji Positif: Memastikan hashing dan verifikasi password valid"""
+    password = "KostAmanJaya2026!"
+    hashed = KostCryptoManager.hash_password(password)
     
-    assert manager.verify_admin_password(pwd, hashed) is True
-
-def test_password_verification_negative():
-    """Uji Negatif: Memastikan verifikasi gagal jika password salah."""
-    manager = KostCryptoManager()
-    pwd = "KostRahasia123!"
-    hashed = manager.hash_admin_password(pwd)
-    
-    assert manager.verify_admin_password("SalahPassword", hashed) is False
+    assert KostCryptoManager.verify_password(password, hashed) is True
+    assert KostCryptoManager.verify_password("PasswordSalah", hashed) is False
 
 def test_decryption_tampered_ciphertext_boundary():
-    """Uji Batas / Negatif: Memastikan dekripsi gagal jika ciphertext dimanipulasi."""
+    """Uji Batas (Boundary Test): Memastikan dekripsi gagal jika ciphertext dimanipulasi (Integritas GCM)"""
     manager = KostCryptoManager()
-    data = "Data Pembayaran Kost"
+    data = "DataRahasiaKamar101"
+    
     encrypted = manager.encrypt_tenant_data(data)
     
-    # Memanipulasi byte terakhir ciphertext
-    tampered_cipher = encrypted["ciphertext"][:-2] + "ff"
+    # Manipulasi byte terakhir dari ciphertext
+    tampered_data = encrypted[:-1] + b'\x00'
     
     with pytest.raises(Exception):
-        manager.decrypt_tenant_data(encrypted["nonce"], tampered_cipher)
+        manager.decrypt_tenant_data(tampered_data)

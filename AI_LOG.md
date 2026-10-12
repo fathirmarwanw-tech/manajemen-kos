@@ -1,7 +1,8 @@
-# AI Log - Tugas 1 Kriptografi
+# AI Log Penggunaan Asisten AI
 
+## AI Log - Tugas Kriptografi (v0.1) & Keamanan Siber (sec-0.1)
 - **Alat (Tool):** Gemini (Google)
-- **Tujuan:** Membantu perancangan modul kriptografi berbasis AES-GCM dan bcrypt untuk aplikasi manajemen kost, serta menyusun skenario uji otomatis.
-- **Ringkasan Perintah:** "Buatkan implementasi Python menggunakan pustaka cryptography dan bcrypt untuk aplikasi manajemen kost, lengkap dengan skenario uji pytest positif dan negatif."
-- **Bagian yang Dipakai:** Struktur kelas `KostCryptoManager` dan skenario uji integritas data.
-- **Cara Memeriksa:** Jalankan perintah `pytest -v` di terminal.
+- **Tujuan:** Membantu penyusunan struktur kode kriptografi AES-256-GCM & bcrypt, skenario pytest, serta dokumen analisis keamanan siber (inventaris aset, DFD, STRIDE threat model, dan risk register) untuk aplikasi Manajemen Kost.
+- **Ringkasan Perintah:** "Buatkan modul enkripsi AES-GCM, pengujian pytest, inventaris aset, DFD, 10 ancaman STRIDE, dan risk register untuk aplikasi manajemen kost."
+- **Bagian yang Dipakai:** Logika enkripsi, implementasi boundary test cipher, dan pemodelan risiko keamanan.
+- **Cara Memeriksa:** Menjalankan `pytest` secara lokal untuk memastikan seluruh unit test komponen kriptografi bernilai PASSED.
