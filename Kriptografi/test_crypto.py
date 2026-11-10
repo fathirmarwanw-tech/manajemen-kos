@@ -26,7 +26,6 @@ def test_decryption_tampered_ciphertext_boundary():
     
     encrypted = manager.encrypt_tenant_data(data)
     
-    # Manipulasi byte terakhir dari ciphertext
     tampered_data = encrypted[:-1] + b'\x00'
     
     with pytest.raises(Exception):
