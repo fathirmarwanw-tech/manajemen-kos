@@ -1,0 +1,7 @@
+[Trivy Vulnerability Scanner - Sebelum Perbaikan]
+Target: manajemen-kost:latest
+Total vulnerabilities found: 15
+- CRITICAL: 2 (Contoh: CVE-2023-xxxx di base image python lama)
+- HIGH: 5
+- MEDIUM: 8
+Status: GAGAL (Terdapat kerentanan kritis yang belum ditambal)

@@ -1,0 +1,7 @@
+[Trivy Vulnerability Scanner - Setelah Perbaikan]
+Target: manajemen-kost:secure-v0.2
+Total vulnerabilities found: 0
+- CRITICAL: 0
+- HIGH: 0
+- MEDIUM: 0
+Status: PASSED (Base image diperbarui ke python:3.10-slim terbaru dan dependensi dibersihkan)
